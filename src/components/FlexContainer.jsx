@@ -1,12 +1,10 @@
 
 function FlexContainer(props) {
-    const styleFlex = {
-        display: "flex",
-        flexWrap: "wrap",
-        flexDirection: "row",
-        gap: "15px",
-    }
-  return <div style={styleFlex}>{props.children}</div>
+  return <div 
+   className="flex flex-col h-screen bg-orange-400"
+  >
+    {props.children}
+    </div>
   
 }
 
