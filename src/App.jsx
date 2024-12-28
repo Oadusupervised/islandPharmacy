@@ -1,5 +1,4 @@
-import islandPharmacyLogo from './assets/islandPharmacyFlatLogo.svg'
-import ItemCount from "./components/ItemCount";
+import React from 'react';
 import ItemListContainer from "./components/ItemListContainer";
 import NavbarDefaultNav from './components/NavbarDefault';
 
@@ -10,7 +9,9 @@ function App() {
     <div>
 
       <NavbarDefaultNav />
-      <ItemListContainer greeting="Productos" />
+      <hr />
+      <ItemListContainer greeting="Productos Trending" />
+
     </div>
   )
 }

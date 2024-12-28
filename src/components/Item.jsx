@@ -1,6 +1,7 @@
+import React from "react";
 import Button from "./Button";
 
-function CardProduct(props) {
+function Item(props) {
   const { price, title, text, img, id } = props;
 
   return (
@@ -41,4 +42,4 @@ function CardProduct(props) {
   );
 }
 
-export default CardProduct;
+export default Item;
