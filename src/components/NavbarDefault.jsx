@@ -1,4 +1,3 @@
-import React, { useState } from 'react';
 import islandPharmacyFlatLogo from '../assets/islandPharmacyFlatLogo.svg'
 import shoppCart from '../assets/shoppCart.svg'
 

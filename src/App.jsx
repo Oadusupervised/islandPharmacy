@@ -7,9 +7,10 @@ function App() {
 
 
   return (
+    <div>
 
-    <div className='bg-orange-400'>
       <NavbarDefaultNav />
+      <ItemListContainer greeting="Productos" />
     </div>
   )
 }
