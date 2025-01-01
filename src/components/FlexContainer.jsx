@@ -1,8 +1,6 @@
 
 function FlexContainer(props) {
-  return <div 
-   className="flex grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4"
-  >
+  return <div className="container m-auto grid grid-cols-3 gap-4">
     {props.children}
     </div>
   

@@ -5,7 +5,8 @@ import FlexContainer from "./FlexContainer";
 function ItemList(props) {
   return (
     <div>
-      <h2>{props.greeting}</h2>
+      <h2>{props.titulo}</h2>
+      <hr />
       <FlexContainer>
         {props.products.map((item) => (
           <Item

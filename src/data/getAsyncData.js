@@ -27,7 +27,7 @@ export function getAsyncItemById(requestID) {
     setTimeout( () => {
       if (errorFatal) reject("Algo salió mal!!!!")
       console.log("Promesa Terminada")
-      resolve(products.find(item => item.id === requestID))      
+      resolve(products.find((item) => item.id === requestID))      
     }, 2000)     
   })
 

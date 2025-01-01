@@ -1,9 +1,12 @@
 import ItemList from "./ItemList";
 import getAsyncData from "../data/getAsyncData";
 import React, { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-function ItemListContainer(props) {
+function ItemListContainer() {
   const [products, setProducts] = useState([]);
+  const [titulo, setTitulo] = useState("Nuestros productos");
+  const categoria = useParams().categoria;
   console.log("%cRender de ItemListContainer", "color: yellow");
   console.log(products);
 
@@ -11,15 +14,24 @@ function ItemListContainer(props) {
     const respuestaPromise = getAsyncData();
     console.log(respuestaPromise);
     respuestaPromise
-      .then((respuesta) => setProducts(respuesta))
+      .then((respuesta) => {
+        if (categoria) {
+          return setProducts(
+            respuesta.filter((item) => item.category === categoria),
+          setTitulo(categoria)
+          );
+        } else {
+          return setProducts(respuesta),
+          setTitulo("Nuestros productos")
+        }
+      })
       .catch((error) => alert(error));
-  }, []);
-
+  }, [categoria]);
 
   return (
-    <div className="flex grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-      <ItemList greeting={props.greeting} products={products} />
-    </div>
+   <div>
+      <ItemList  products={products} titulo={titulo} />
+  </div>
   );
 }
 
