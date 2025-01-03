@@ -1,7 +1,10 @@
 import React from 'react'
 import islandPharmacyFlatLogo from '../assets/islandPharmacyFlatLogo.svg'
 import shoppCart from '../assets/shoppCart.svg'
-import { Link } from 'react-router-dom'
+import { Link , Outlet} from 'react-router-dom'
+import Banner from './Banner';
+import MapEmbed from './MapEmbed';
+
 
 function NavbarDefaultNav() {
 
@@ -43,10 +46,16 @@ function NavbarDefaultNav() {
   </>
   return (
 
-    
-    <nav className="bg-white border-gray-200 dark:bg-gray-900">
-      {content}
-    </nav>
+    <main>
+      <nav className="bg-white border-gray-200 dark:bg-gray-900">
+        {content}
+      </nav>
+        <Banner />
+        <Outlet /> {/* Las rutas hijas aparecen aquí */}
+        <MapEmbed />
+    </main>
+      
+
   )
 }
 
