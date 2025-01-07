@@ -50,8 +50,7 @@ function NavbarDefaultNav() {
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         {content}
       </nav>
-        <Banner />
-        <Outlet /> {/* Las rutas hijas aparecen aquí */}
+      <Outlet /> {/* Las rutas hijas aparecen aquí */}
         <MapEmbed />
     </main>
       
