@@ -1,4 +1,4 @@
-import React from 'react'
+import { useState } from 'react' // Importamos useState para manejar el estado del bannerReact from 'react'
 import islandPharmacyFlatLogo from '../assets/islandPharmacyFlatLogo.svg'
 import shoppCart from '../assets/shoppCart.svg'
 import { Link , Outlet} from 'react-router-dom'
@@ -26,16 +26,16 @@ function NavbarDefaultNav() {
                 <Link to="/" className="block py-2 px-3 text-white bg-blue-700 rounded md:bg-transparent md:text-blue-700 md:p-0 dark:text-white md:dark:text-blue-500" aria-current="page">Home</Link>
               </li>
               <li>
-                <Link to="/item/1" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">About</Link>
+                <Link to="/category/Cuidado personal" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Ciudado Personal</Link>
               </li>
               <li>
-                <Link to="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</Link>
+                <Link to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Services</Link>
               </li>
               <li>
-                <Link to="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</Link>
+                <Link to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Pricing</Link>
               </li>
               <li>
-                <Link to="#" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</Link>
+                <Link to="" className="block py-2 px-3 text-gray-900 rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-blue-700 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Contact</Link>
               </li>
               <li>
                 <Link className="flex place-items-end space-x-3 rtl:space-x-reverse"><img src={shoppCart} className="h-8 shadow-2xl" alt="shopping Logo" /></Link>
@@ -50,6 +50,11 @@ function NavbarDefaultNav() {
       <nav className="bg-white border-gray-200 dark:bg-gray-900">
         {content}
       </nav>
+      <Banner 
+        initialMessage="🌴 Welcome to Punta Cana's Premier Pharmacy! 🌟 Open 24/7 for all your health and wellness needs. Fast service, friendly staff, and the care you deserve."
+        initialButtonText="Shop Now"
+        onClose={() => console.log('Banner has been closed.')}
+      />
       <Outlet /> {/* Las rutas hijas aparecen aquí */}
         <MapEmbed />
     </main>

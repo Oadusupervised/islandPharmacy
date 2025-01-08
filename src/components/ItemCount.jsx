@@ -1,30 +1,21 @@
-import { useState } from "react";
+import React from "react";
 
-function ItemCount() {
-  let [count, setCount] = useState(1);
-
-  const handleAdd = () => {
-    // Antes de modificar el estado -> VALIDAR que no excede un máximo (10)
-    console.log("Suma");
-    setCount(count + 1);
-    // count = count +1
-  };
-
-  const handleSubstract = () => {
-    // Antes de modificar el estado -> VALIDAR que no descienda de un min (1)
-    console.log("Resta");
-    setCount(count - 1);
-  };
-
-  // Cada vez que se RENDERIZA el componente
-  // Cada vez que exista un cambio de estado, esto se ejecuta
-  console.log("Renderizamos", count);
-
+function ItemCount({ quantity, handleAdd, handleSubstract }) {
   return (
-    <div>
-      <button onClick={handleAdd}>+</button>
-      <span>{count}</span>
-      <button onClick={handleSubstract}>-</button>
+    <div className="flex items-center">
+      <button
+          onClick={handleAdd}
+          className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 focus:outline-none"
+      >
+        +
+      </button>
+      <span className="px-4">{quantity}</span>
+      <button
+        onClick={handleSubstract}
+        className="px-2 py-1 bg-gray-300 text-gray-700 rounded hover:bg-gray-400 focus:outline-none"
+      >
+        -
+      </button>
     </div>
   );
 }

@@ -1,8 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
+import ItemCount from "./ItemCount";
 
 function ItemDetail(props) {
-  const { price, title, description, text, img, id } = props;
+
+  const { price, title, description, text, img, id, stock } = props;
+  const [quantity, setQuantity] = useState(1);
+
+  const handleSubtract = () => {
+    if (quantity > 1) {
+      setQuantity(quantity - 1);
+    }
+  };
+
+  const handleAdd = () => {
+    if (quantity < stock) {    
+      setQuantity(quantity + 1);    
+    }    
+    if (quantity === stock) {
+      alert("Se ha alcanzado el stock máximo");
+    }
+  };
+
 
   return (
     <div className="bg-gray-100">
@@ -47,27 +66,16 @@ function ItemDetail(props) {
             </div>
             <p className="text-gray-700 mb-6">{text}</p>
 
-            <div className="mb-6">
-              <h3 className="text-lg font-semibold mb-2">Color:</h3>
-              <div className="flex space-x-2">
-                <button className="w-8 h-8 bg-black rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-black"></button>
-                <button className="w-8 h-8 bg-gray-300 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"></button>
-                <button className="w-8 h-8 bg-blue-500 rounded-full focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500"></button>
-              </div>
-            </div>
 
             <div className="mb-6">
-              <label for="quantity" className="block text-sm font-medium text-gray-700 mb-1">
+              <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
                 Quantity:
               </label>
-              <input
-                type="number"
-                id="quantity"
-                name="quantity"
-                min="1"
-                value="1"
-                className="w-12 text-center rounded-md border-gray-300 shadow-sm focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50"
-              />
+              <ItemCount
+                  quantity={quantity}
+                  handleAdd={handleAdd}
+                  handleSubstract={handleSubtract}
+                />
             </div>
 
             <div className="flex space-x-4 mb-6">
@@ -108,26 +116,13 @@ function ItemDetail(props) {
             </div>
 
             <div>
-              <h3 className="text-lg font-semibold mb-2">Key Features:</h3>
+              <h3 className="text-lg font-semibold mb-2">Product Description:</h3>
               <ul className="list-disc list-inside text-gray-700">
-                <li>Industry-leading noise cancellation</li>
-                <li>30-hour battery life</li>
-                <li>Touch sensor controls</li>
-                <li>Speak-to-chat technology</li>
+                <li>{description}</li>
               </ul>
             </div>
           </div>
         </div>
-      </div>
-
-      {/* Botón "Ver Más" */}
-      <div className="mt-6">
-        <Link
-          to={`/item/${id}`}
-          className="inline-block bg-blue-600 text-white font-medium text-lg px-6 py-3 rounded-lg hover:bg-blue-700 transition-all duration-300"
-        >
-          Ver Más
-        </Link>
       </div>
     </div>
   );
