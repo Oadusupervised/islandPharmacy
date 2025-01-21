@@ -22,3 +22,4 @@ function ItemCount({handleAdd, handleSubtract, quantity}) {
 }
 
 export default ItemCount;
+ 
