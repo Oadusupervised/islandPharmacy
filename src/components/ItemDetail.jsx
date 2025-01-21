@@ -9,6 +9,21 @@ function ItemDetail(props) {
   const {price, title, description, text, img, id, stock } = props;
   const {addItem} = useContext(CartContext);
 
+  const [quantity, setQuantity] = useState(1);
+
+
+  const handleAdd = () => {
+    if (quantity === stock) return;
+    console.log("Suma");
+    setQuantity(quantity + 1);
+    // count = count +1
+  };
+
+  const handleSubstract = () => {
+    // TODO: Antes de modificar el estado -> VALIDAR que no descienda de un min (1)
+    console.log("Resta");
+    setQuantity(quantity - 1);
+  };
 
   function onSubmitCount(quantity){
     addItem({ price, id, title, img, quantity });
@@ -63,7 +78,10 @@ function ItemDetail(props) {
               <label htmlFor="quantity" className="block text-sm font-medium text-gray-700 mb-1">
                 Quantity:
               </label>
-              <ItemCount max={stock}
+              <ItemCount 
+                handleAdd={handleAdd}
+                handleSubstract={handleSubstract}
+                quantity={quantity}
                 />
             </div>
 

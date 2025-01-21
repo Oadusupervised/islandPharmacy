@@ -1,26 +1,7 @@
 import React from "react";
-import { useState } from "react";
 
-function ItemCount(props) {
+function ItemCount({handleAdd, handleSubtract, quantity}) {
   
-  let [quantity, setQuantity] = useState(1);
-
-  const handleSubtract = () => {
-    if (quantity > 1) {
-      setQuantity(quantity - 1);
-    }
-  };
-
-  const handleAdd = () => {
-    if (quantity < props.max) {    
-      setQuantity(quantity + 1);    
-    }    
-    if (quantity === props.max) {
-      alert("Se ha alcanzado el stock máximo");
-    }
-  };
-  
-
   return (
     <div className="flex items-center">
       <button
