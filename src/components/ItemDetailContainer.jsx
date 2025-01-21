@@ -2,6 +2,7 @@ import React,{ useState, useEffect } from "react";
 import { useParams } from "react-router-dom"; // Import for accessing URL parameters
 import { getAsyncItemById } from "../data/getAsyncData";
 import ItemDetail from "./ItemDetail";
+import Loader from "./Loader";
 
 function ItemDetailContainer() {
   const [product, setProduct] = useState({});
@@ -25,7 +26,9 @@ function ItemDetailContainer() {
     getProduct();
   }, [id]);
 
-  return <ItemDetail {...product} />;
+
+  if (product) return <ItemDetail {...product} />;
+  else return <Loader />;
 }
 
 export default ItemDetailContainer;
