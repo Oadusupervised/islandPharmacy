@@ -25,7 +25,7 @@ function ItemDetailContainer() {
     getProduct();
   }, [id]);
 
-  if (product) return <ItemDetail {...product} />;
+  if (product) return <ItemDetail {...product}  id={id} />;
     else return <Loader />;
 }
 

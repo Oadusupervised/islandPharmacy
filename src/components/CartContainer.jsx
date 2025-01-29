@@ -1,9 +1,34 @@
 import { useContext } from "react";
 import cartContext from "../context/CartContext";
 import {Link} from "react-router-dom"
+import { createOrder } from "../data/database";
 
 function CartContainer() {
-  const { cartItems, removeItem } = useContext(cartContext);
+  const { cartItems, removeItem, getTotalPrice } = useContext(cartContext);
+  async function handleCheckout(evt) {
+    evt.preventDefault();
+
+    const orderData = {
+      buyer: {
+        username: userData.username,
+        surname: userData.surname,
+        age: userData.age,
+      },
+      items: cartItems,
+      total: getTotalPrice(),
+      date: new Date(),
+    };
+
+    const newOrderID = await createOrder(orderData);
+
+    // Mostrar en la interfaz
+    // 1: State + rendering condicional
+    // 2. Redireccionar -> Router: /orders/${id} -> useParams()
+    console.log("Compra realizada", newOrderID);
+  }
+
+
+
 
   // 1. conectarlo al context -> useContext, cartContext
   // 2. mostrar el listado de productos ->
@@ -16,6 +41,7 @@ function CartContainer() {
     <div>
       <h1>Tu carrito</h1>
       {cartItems.map((item) => (
+        <div key={item.id}>
         <>
           <div key={item.id}>
             <h3>{item.title}</h3>
@@ -25,7 +51,10 @@ function CartContainer() {
           </div>
           <hr />
         </>
+        </div>
       ))}
+      <p>Total: ${getTotalPrice()}</p>
+      <button onClick={handleCheckout}>Comprar</button>
     </div>
     ) :
     <div>

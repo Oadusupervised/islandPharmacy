@@ -1,6 +1,6 @@
 import { initializeApp } from "firebase/app";
-import { getFirestore, collection, getDocs, doc, getDoc, query, where } from "firebase/firestore";
-
+import { getFirestore, collection, getDocs, doc, getDoc, query, where, addDoc, writeBatch } from "firebase/firestore";
+import products from "./data";
 
 
 
@@ -48,4 +48,23 @@ export async function getAsyncItemsByCategory(catID) {
     });
     return productsList
 
+}
+
+
+export async function exportProductsWithBatch() {
+    const batch = writeBatch(db);
+    for(let item of products) {
+        const itemId= item.id;
+        delete item.id;
+        const itemDocRef = doc(db, "medicines", String(itemId));
+        batch.set(itemDocRef, item);
+    }
+    await batch.commit();
+
+}
+
+export async function createOrder(orderData) {
+    const collectionRef = collection(db, "orders");
+    const newOrder = await addDoc(collectionRef, orderData);
+    return newOrder.id;
 }
