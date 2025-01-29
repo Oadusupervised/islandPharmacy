@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 function ItemDetail(props) {
 
   const [isAddedToCart, setIsAddedToCart] = useState(false);
-  const {price, title, description, text, img, id, stock } = props;
+  const {price, title, description, text, image: img, id, stock } = props;
   const {addItem} = useContext(CartContext);
 
   const [quantity, setQuantity] = useState(1);

@@ -15,7 +15,7 @@ function ItemList(props) {
             title={item.title}
             price={item.price}
             text={item.category}
-            img={item.img}
+            img={item.image}
           />
         ))}
       </FlexContainer>
