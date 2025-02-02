@@ -24,17 +24,25 @@ export function CartContextProvider(props) {
 
   function addItem({ price, id, title, img, quantity }) {
     const copyCartItems = [...cartItems];
-
-
-    copyCartItems.push({
-      id: id,
-      title: title,
-      img: img,
-      quantity: quantity,
-      price: price,
-    });
+    const existingItemIndex = copyCartItems.findIndex(item => item.id === id);
+  
+    if (existingItemIndex !== -1) {
+      // Si el producto ya está en el carrito, sumamos la cantidad
+      copyCartItems[existingItemIndex].quantity += quantity;
+    } else {
+      // Si el producto no está en el carrito, lo agregamos
+      copyCartItems.push({
+        id,
+        title,
+        img,
+        quantity,
+        price,
+      });
+    }
+  
     setCartItems(copyCartItems);
   }
+  
 
   function countItemsInCart() {
     let total = 0;
@@ -48,6 +56,7 @@ export function CartContextProvider(props) {
     <cartContext.Provider
       value={{
         cartItems,
+        setCartItems,
         countItemsInCart,
         addItem,
         removeItem,
